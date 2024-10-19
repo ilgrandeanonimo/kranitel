@@ -1,0 +1,12 @@
+# Kranitel Messages
+# Authors: IlGrandeAnonimo
+
+messages:
+    reload-done: |-
+        <green>Configurazione e messaggi ricaricati!</green>
+        <red>Attenzione per ricaricare le regole devi riavviare il server</red>
+    do-not-reload: <red><bold>Attenzione!</bold></red><white>Non dovresti effetuare
+        un reload  del server con /reload confirm. Se devi ricaricare messaggi o configurazione
+        dei plugin è meglio utilizzare il comando apposito che in genere ogni plugin ha
+        (di solito /<plugin> reload). In caso contrario riavvia il server.
+
