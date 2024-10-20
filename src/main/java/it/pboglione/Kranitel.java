@@ -57,10 +57,6 @@ public final class Kranitel extends JavaPlugin {
         } else {
             criticalVerifyMessages();
         }
-        /*
-         *  The `verifyMessages` function may disable the plugin
-         *  stop everithing if this happened
-         */
         if(!isEnabled()) {
             return;
         }
@@ -78,7 +74,7 @@ public final class Kranitel extends JavaPlugin {
                 new File(getDataFolder(), "config.yml").toPath(),
                 Config.class,
                 YamlConfigurationProperties.newBuilder()
-                        .header("Kranitel Configuration")
+                        .header(Config.HEADER)
                         .charset(StandardCharsets.UTF_8)
                         .build()
         );
@@ -94,7 +90,7 @@ public final class Kranitel extends JavaPlugin {
                 Config.class,
                 configuration,
                 YamlConfigurationProperties.newBuilder()
-                        .header("Kranitel Configuration")
+                        .header(Config.HEADER)
                         .build());
     }
 
@@ -122,7 +118,7 @@ public final class Kranitel extends JavaPlugin {
                 messagesFile.toPath(),
                 Messages.class,
                 YamlConfigurationProperties.newBuilder()
-                        .header("Kranitel Messages")
+                        .header(Messages.HEADER)
                         .charset(StandardCharsets.UTF_8)
                         .build()
         );
@@ -150,7 +146,7 @@ public final class Kranitel extends JavaPlugin {
                         Messages.class,
                         defaultMessages,
                         YamlConfigurationProperties.newBuilder()
-                                .header("Kranitel Messages")
+                                .header(Messages.HEADER)
                                 .build());
                 getLogger().severe("""
                     Invalid messages.yml! The default messages file has been
@@ -202,7 +198,7 @@ public final class Kranitel extends JavaPlugin {
                 Messages.class,
                 this.messages,
                 YamlConfigurationProperties.newBuilder()
-                        .header("Kranitel Messages")
+                        .header(Messages.HEADER)
                         .build());
     }
 

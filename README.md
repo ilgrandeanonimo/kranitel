@@ -11,7 +11,6 @@ Kranitel is a plugin that helps you to protect every commands you want from a si
 ### Roadmap
 - [x] PaperMC Support
 - [ ] Velocity Support
-- [ ] Fix variables names
 - [ ] Support for older Minecraft Versions 
 - [ ] Better permissions system
 - [ ] Anticheat

@@ -58,4 +58,10 @@ public final class Messages {
             tmpMessages.getMessages().put(key, message));
         this.messages = tmpMessages.getMessages();
     }
+
+    public static final String HEADER = """
+            Kranitel Messages
+            In this files is used MiniMessages format
+            https://docs.advntr.dev/minimessage/index.html
+            """;
 }

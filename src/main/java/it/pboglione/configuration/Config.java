@@ -64,4 +64,8 @@ public final class Config {
                     "Allows the player to ban, pardon and kick other players"
             )
     );
+
+    public static final String HEADER = """
+            Kranitel Configuration
+            """;
 }
