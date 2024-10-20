@@ -13,18 +13,9 @@ version = "1.0.0-alpha1"
 
 repositories {
     mavenCentral()
-    maven {
-        name = "papermc"
-        url = uri("https://repo.papermc.io/repository/maven-public/")
-    }
-    maven {
-        name = "gradle-plugins"
-        url = uri("https://plugins.gradle.org/m2/")
-    }
-    maven {
-        name = "william278"
-        url = uri("https://repo.william278.net/releases")
-    }
+    maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://plugins.gradle.org/m2/")
+    maven("https://repo.william278.net/releases")
 }
 
 dependencies {
@@ -39,11 +30,9 @@ java {
 }
 
 tasks.withType<ShadowJar> {
-    archiveFileName = "kranitel-${version}.jar"
-
-    relocate("de.exlll.configlib", "it.pboglione.dependencies.configlib")
-    relocate("net.william278.uniform", "it.pboglione.dependencies.uniform")
-    relocate("org.snakeyml", "it.pboglione.dependencies.snakeyml")
-
+    archiveFileName = "kranitel-$version.jar"
+    relocate("de.exlll.configlib", "$group.dependencies.configlib")
+    relocate("net.william278.uniform", "$group.dependencies.uniform")
+    relocate("org.snakeyml", "$group.dependencies.snakeyml")
     minimize()
 }
