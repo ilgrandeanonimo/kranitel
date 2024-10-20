@@ -2,7 +2,7 @@
  *
  *  KranitelCommand.java
  *  This file is part of Kranitel by IlGrandeAnonimo
- *  Copyright (C) 2024 Paolo Boglione
+ *  Copyright (C) 2024 IlGrandeAnonimo <ilgrandeanonimo@icloud.com>
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@ package it.pboglione.commands;
 
 import it.pboglione.Kranitel;
 import lombok.RequiredArgsConstructor;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.william278.uniform.CommandUser;
