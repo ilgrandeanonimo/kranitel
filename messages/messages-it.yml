@@ -1,6 +1,6 @@
 # Kranitel Messages
-# Authors: IlGrandeAnonimo
-
+# In this files is used MiniMessages format
+# https://docs.advntr.dev/minimessage/index.html
 messages:
     reload-done: |-
         <green>Configurazione e messaggi ricaricati!</green>
@@ -9,4 +9,3 @@ messages:
         un reload  del server con /reload confirm. Se devi ricaricare messaggi o configurazione
         dei plugin è meglio utilizzare il comando apposito che in genere ogni plugin ha
         (di solito /<plugin> reload). In caso contrario riavvia il server.
-

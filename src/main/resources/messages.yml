@@ -1,5 +1,6 @@
 # Kranitel Messages
-
+# In this files is used MiniMessages format
+# https://docs.advntr.dev/minimessage/index.html
 messages:
     reload-done: |-
         <green>Configuration and messages reloaded!</green>
