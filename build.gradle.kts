@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     paperweight.paperDevBundle("1.21.1-R0.1-SNAPSHOT")
-    implementation("net.william278.uniform:uniform-paper:1.2.1")
+    implementation("net.william278.uniform:uniform-paper:1.2.2")
     implementation("de.exlll:configlib-yaml:4.5.0")
 }
 
