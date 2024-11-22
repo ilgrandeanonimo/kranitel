@@ -34,24 +34,15 @@ import java.util.Set;
 public final class Messages {
     private HashMap<String, String> messages;
 
-    /**
-     *  Get a message as a {@link net.kyori.adventure.text.Component} from the messages.yml file.
-     */
     public Component getMessage(String key, TagResolver... resolvers) {
         return MiniMessage.miniMessage()
                 .deserialize(messages.getOrDefault(key, "Message not found"), resolvers);
     }
 
-    /**
-     *  Get a {@link java.util.Set<String>} of all the messages keys.
-     */
     public Set<String> getMessagesList() {
         return messages.keySet();
     }
 
-    /**
-     *  Merge two messages files
-     */
     public void mergeMessages(Messages messages) {
         final Messages tmpMessages = messages;
         this.messages.forEach((key, message) ->

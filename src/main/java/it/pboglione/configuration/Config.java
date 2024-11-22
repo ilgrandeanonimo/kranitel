@@ -22,8 +22,8 @@ package it.pboglione.configuration;
 
 import de.exlll.configlib.Comment;
 import de.exlll.configlib.Configuration;
-import it.pboglione.configuration.records.CommandRule;
-import it.pboglione.configuration.records.PermissionRule;
+import it.pboglione.configuration.rules.CommandRule;
+import it.pboglione.configuration.rules.PermissionRule;
 import lombok.Getter;
 import org.bukkit.permissions.PermissionDefault;
 
@@ -33,9 +33,6 @@ import java.util.Map;
 @Configuration
 @SuppressWarnings("FieldMayBeFinal")
 public final class Config {
-    @Comment("Kranitel warns all the operators when the server is reloaded.")
-    private boolean sendReloadAlert = true;
-
     @Comment({
             "By default if Kranitel detect an invalid messages.yml file and merge it",
             "with the original one."

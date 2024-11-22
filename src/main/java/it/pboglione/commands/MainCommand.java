@@ -21,14 +21,13 @@
 package it.pboglione.commands;
 
 import it.pboglione.Kranitel;
-import lombok.RequiredArgsConstructor;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.william278.uniform.CommandUser;
 import net.william278.uniform.Permission;
 import net.william278.uniform.annotations.CommandNode;
 import net.william278.uniform.annotations.PermissionNode;
 import net.william278.uniform.annotations.Syntax;
+import org.bukkit.command.CommandSender;
 
 @CommandNode(
         value = "kranitel",
@@ -38,20 +37,19 @@ import net.william278.uniform.annotations.Syntax;
                 defaultValue = Permission.Default.IF_OP
         )
 )
-@RequiredArgsConstructor
 @SuppressWarnings("unused")
-public final class KranitelCommand {
+public final class MainCommand {
+        private static final Kranitel plugin = Kranitel.getInstance();
         @Syntax
         public void execute(CommandUser user) {
-                user.getAudience().sendMessage(MiniMessage.miniMessage()
-                        .deserialize("""
+                CommandSender sender = (CommandSender) user.getAudience();
+                sender.sendRichMessage("""
                                 <#1D6AFF><bold>Kranitel</bold>
                                     <white>Version:</white> <green><version></green>
                                     <white>Author:</white> <green>IlGrandeAnonimo</green>
                                 """,
-                                Placeholder.parsed("version", Kranitel.getInstance().getDescription()
-                                        .getVersion())
-                        )
+                        Placeholder.parsed("version", plugin
+                                .getPluginMeta().getVersion())
                 );
         }
 
@@ -59,7 +57,6 @@ public final class KranitelCommand {
         public static final class Info {
                 @Syntax
                 public void execute(CommandUser user) {
-                        Kranitel plugin = Kranitel.getInstance();
                         plugin.loadConfiguration();
                         plugin.loadMessages();
                         user.getAudience().sendMessage(

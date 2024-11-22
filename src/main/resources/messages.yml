@@ -5,7 +5,3 @@ messages:
     reload-done: |-
         <green>Configuration and messages reloaded!</green>
         <red>Warning: To reload the rules, you need to restart the server</red>
-    do-not-reload: <red><bold>Warning!</bold></red><white>You should not perform a
-        server reload with /reload confirm. If you need to reload plugin messages or
-        configuration, it's better to use the appropriate command that most plugins provide
-        (usually /<plugin> reload). Otherwise, restart the server.
