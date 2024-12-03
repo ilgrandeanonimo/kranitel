@@ -33,29 +33,23 @@ import java.util.Map;
 @Configuration
 @SuppressWarnings("FieldMayBeFinal")
 public final class Config {
-    @Comment({
-            "By default if Kranitel detect an invalid messages.yml file and merge it",
-            "with the original one."
-    })
-    private boolean mergeNewMessages = true;
-
     @Comment("Customizie commands permissions.")
     private Map<String, CommandRule> commmands = Map.of(
-            "about", new CommandRule("bukkit","kranitel.op"),
-            "version", new CommandRule("bukkit","kranitel.op"),
-            "plugins", new CommandRule("bukkit","kranitel.op"),
-            "help", new CommandRule("bukkit","kranitel.op"),
-            "callback", new CommandRule("paper","kranitel.op")
+            "about", new CommandRule("bukkit","kranitel.admin"),
+            "version", new CommandRule("bukkit","kranitel.admin"),
+            "plugins", new CommandRule("bukkit","kranitel.admin"),
+            "help", new CommandRule("bukkit","kranitel.admin"),
+            "callback", new CommandRule("paper","kranitel.admin")
     );
 
     @Comment("You should decare here the permissions that you use with commands")
     private Map<String, PermissionRule> permissions = Map.of(
-            "kranitel.op",
+            "kranitel.admin",
             new PermissionRule(
                     PermissionDefault.OP,
                     "Allows the player to use some administrative commands."
             ),
-            "kranitel.op.super",
+            "kranitel.op",
             new PermissionRule(
                     PermissionDefault.OP,
                     "Allows the player to ban, pardon and kick other players"
