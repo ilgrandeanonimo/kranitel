@@ -52,7 +52,7 @@ public final class Messages {
 
     public static final String HEADER = """
             Kranitel Messages
-            In this files is used MiniMessages format
+            Messages are formatted with kyori's adventure api
             https://docs.advntr.dev/minimessage/index.html
             """;
 }
