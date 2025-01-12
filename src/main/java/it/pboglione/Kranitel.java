@@ -22,8 +22,7 @@ package it.pboglione;
 
 import de.exlll.configlib.YamlConfigurationProperties;
 import de.exlll.configlib.YamlConfigurations;
-import it.pboglione.commands.MainCommand;
-import it.pboglione.configuration.Config;
+import it.pboglione.configuration.Settings;
 import it.pboglione.configuration.Messages;
 import lombok.Getter;
 import net.william278.uniform.paper.PaperUniform;
@@ -33,8 +32,6 @@ import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 @Getter
@@ -43,7 +40,7 @@ public final class Kranitel extends JavaPlugin {
     @Getter
     private static Kranitel instance;
     private Messages messages;
-    private Config configuration;
+    private Settings settings;
 
     @Override
     public void onEnable() {
@@ -56,11 +53,11 @@ public final class Kranitel extends JavaPlugin {
     }
 
     public void loadConfiguration() {
-        this.configuration = YamlConfigurations.update(
+        this.settings = YamlConfigurations.update(
                 new File(getDataFolder(), "config.yml").toPath(),
-                Config.class,
+                Settings.class,
                 YamlConfigurationProperties.newBuilder()
-                        .header(Config.HEADER)
+                        .header(Settings.HEADER)
                         .charset(StandardCharsets.UTF_8)
                         .build()
         );
@@ -69,10 +66,10 @@ public final class Kranitel extends JavaPlugin {
     public void saveConfiguration() {
         YamlConfigurations.save(
                 new File(this.getDataFolder(), "config.yml").toPath(),
-                Config.class,
-                configuration,
+                Settings.class,
+                settings,
                 YamlConfigurationProperties.newBuilder()
-                        .header(Config.HEADER)
+                        .header(Settings.HEADER)
                         .build());
     }
 
@@ -99,12 +96,12 @@ public final class Kranitel extends JavaPlugin {
     }
 
     public void applyRules() {
-        configuration.getPermissions()
+        settings.getPermissions()
                 .forEach((name, rule) ->
                         new Permission(name, rule.description(), rule.isDefault())
                 );
         final CommandMap commandMap = getServer().getCommandMap();
-        configuration.getCommmands()
+        settings.getCommmands()
                 .forEach((name, rule) -> {
                     String fullName = String.format("%s:%s", rule.namespace(), name);
                     Command command = commandMap.getCommand(fullName);
@@ -120,6 +117,6 @@ public final class Kranitel extends JavaPlugin {
 
     public void registerCommands() {
         PaperUniform.getInstance(this)
-                .register(new MainCommand());
+                .register(new KranitelCommand());
     }
 }

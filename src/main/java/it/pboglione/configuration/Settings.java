@@ -22,8 +22,8 @@ package it.pboglione.configuration;
 
 import de.exlll.configlib.Comment;
 import de.exlll.configlib.Configuration;
-import it.pboglione.configuration.rules.CommandRule;
-import it.pboglione.configuration.rules.PermissionRule;
+import it.pboglione.configuration.records.CommandRule;
+import it.pboglione.configuration.records.PermissionRule;
 import lombok.Getter;
 import org.bukkit.permissions.PermissionDefault;
 
@@ -32,7 +32,7 @@ import java.util.Map;
 @Getter
 @Configuration
 @SuppressWarnings("FieldMayBeFinal")
-public final class Config {
+public final class Settings {
     @Comment("Customizie commands permissions.")
     private Map<String, CommandRule> commmands = Map.of(
             "about", new CommandRule("bukkit","kranitel.admin"),

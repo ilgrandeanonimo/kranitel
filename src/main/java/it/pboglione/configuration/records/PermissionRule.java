@@ -1,6 +1,6 @@
 /*
  *
- *  CommandRule.java
+ *  PermissionRule.java
  *  This file is part of Kranitel by IlGrandeAnonimo
  *  Copyright (C) 2024 IlGrandeAnonimo <ilgrandeanonimo@icloud.com>
  *
@@ -18,6 +18,9 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione.configuration.rules;
+package it.pboglione.configuration.records;
 
-public record CommandRule(String namespace, String permission) {}
+import org.bukkit.permissions.PermissionDefault;
+
+public record PermissionRule(PermissionDefault isDefault, String description) {
+}

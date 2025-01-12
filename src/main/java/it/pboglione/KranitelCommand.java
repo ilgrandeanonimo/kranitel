@@ -18,9 +18,8 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione.commands;
+package it.pboglione;
 
-import it.pboglione.Kranitel;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.william278.uniform.CommandUser;
 import net.william278.uniform.Permission;
@@ -38,7 +37,7 @@ import org.bukkit.command.CommandSender;
         )
 )
 @SuppressWarnings("unused")
-public final class MainCommand {
+public final class KranitelCommand {
         private static final Kranitel plugin = Kranitel.getInstance();
         @Syntax
         public void execute(CommandUser user) {
@@ -59,8 +58,10 @@ public final class MainCommand {
                 public void execute(CommandUser user) {
                         plugin.loadConfiguration();
                         plugin.loadMessages();
-                        user.getAudience().sendMessage(
-                                plugin.getMessages().getMessage("reload-done"));
+                        CommandSender sender = (CommandSender) user.getAudience();
+                        sender.sendRichMessage(
+                                plugin.getMessages().getReloaded()
+                        );
                 }
         }
 }
