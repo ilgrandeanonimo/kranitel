@@ -1,8 +1,6 @@
 name: Kranitel
 version: 1.0.0-alpha1
 main: it.pboglione.Kranitel
-bootstrapper: it.pboglione.KranitelBootstrap
-loader: it.pboglione.KranitelLoader
 description: Kranitel allows you to change commands permissions.
 author: IlGrandeAnonimo
 api-version: '1.21.1'
