@@ -24,6 +24,7 @@ import de.exlll.configlib.YamlConfigurationProperties;
 import de.exlll.configlib.YamlConfigurations;
 import it.pboglione.configuration.Settings;
 import it.pboglione.configuration.Messages;
+import it.pboglione.configuration.records.DefaultRule;
 import lombok.Getter;
 import net.william278.uniform.paper.PaperUniform;
 import org.bukkit.command.Command;
@@ -33,6 +34,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Getter
 @SuppressWarnings("unused")
@@ -41,6 +43,7 @@ public final class Kranitel extends JavaPlugin {
     private static Kranitel instance;
     private Messages messages;
     private Settings settings;
+    private List<DefaultRule> defaultRules;
 
     @Override
     public void onEnable() {
@@ -110,9 +113,24 @@ public final class Kranitel extends JavaPlugin {
                         getLogger().warning(fullName + " not found");
                         return;
                     }
-
+                    defaultRules.add(
+                            new DefaultRule(rule.namespace(), name, command.getPermission())
+                    );
                     command.setPermission(rule.permission());
                 });
+    }
+
+    public void reapplyRules() {
+        final CommandMap commandMap = getServer().getCommandMap();
+        defaultRules.forEach(rule -> {
+            String fullName = String.format("%s:%s", rule.namespace(), rule.command());
+            Command command = commandMap.getCommand(fullName);
+            if(command != null) {
+                command.setPermission(rule.permission());
+            }
+        });
+        defaultRules.clear();
+        applyRules();
     }
 
     public void registerCommands() {

@@ -53,11 +53,12 @@ public final class KranitelCommand {
         }
 
         @CommandNode(value = "reload")
-        public static final class Info {
+        public static final class Reload {
                 @Syntax
                 public void execute(CommandUser user) {
                         plugin.loadConfiguration();
                         plugin.loadMessages();
+                        plugin.reapplyRules();
                         CommandSender sender = (CommandSender) user.getAudience();
                         sender.sendRichMessage(
                                 plugin.getMessages().getReloaded()
