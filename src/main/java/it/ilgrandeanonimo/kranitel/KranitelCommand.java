@@ -18,7 +18,7 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione;
+package it.ilgrandeanonimo.kranitel;
 
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.william278.uniform.CommandUser;

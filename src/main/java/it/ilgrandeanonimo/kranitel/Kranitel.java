@@ -18,13 +18,13 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione;
+package it.ilgrandeanonimo.kranitel;
 
 import de.exlll.configlib.YamlConfigurationProperties;
 import de.exlll.configlib.YamlConfigurations;
-import it.pboglione.configuration.Settings;
-import it.pboglione.configuration.Messages;
-import it.pboglione.configuration.records.DefaultRule;
+import it.ilgrandeanonimo.kranitel.configuration.Settings;
+import it.ilgrandeanonimo.kranitel.configuration.Messages;
+import it.ilgrandeanonimo.kranitel.configuration.records.DefaultRule;
 import lombok.Getter;
 import net.william278.uniform.paper.PaperUniform;
 import org.bukkit.command.Command;
@@ -34,16 +34,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "FieldMayBeFinal"})
 public final class Kranitel extends JavaPlugin {
     @Getter
     private static Kranitel instance;
+    private List<DefaultRule> defaultRules;
     private Messages messages;
     private Settings settings;
-    private List<DefaultRule> defaultRules;
 
     @Override
     public void onEnable() {
@@ -136,5 +137,9 @@ public final class Kranitel extends JavaPlugin {
     public void registerCommands() {
         PaperUniform.getInstance(this)
                 .register(new KranitelCommand());
+    }
+
+    public Kranitel() {
+        this.defaultRules = new ArrayList<>();
     }
 }

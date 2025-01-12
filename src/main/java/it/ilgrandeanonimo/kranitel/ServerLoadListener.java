@@ -1,6 +1,6 @@
 /*
  *
- *  Messages.java
+ *  OnServerLoadEvent.java
  *  This file is part of Kranitel by IlGrandeAnonimo
  *  Copyright (C) 2024 IlGrandeAnonimo <ilgrandeanonimo@icloud.com>
  *
@@ -18,26 +18,22 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione.configuration;
+package it.ilgrandeanonimo.kranitel;
 
-import de.exlll.configlib.Configuration;
-import lombok.Getter;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
+import lombok.RequiredArgsConstructor;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
+import org.bukkit.event.server.ServerLoadEvent;
 
-import java.util.HashMap;
-import java.util.Set;
+@RequiredArgsConstructor
+public final class ServerLoadListener implements Listener {
+    private final Kranitel plugin;
 
-@Getter
-@Configuration
-@SuppressWarnings("FieldMayBeFinal")
-public final class Messages {
-    private String reloaded = "<green>Configuration and messages reloaded!</green>";
-
-    public static final String HEADER = """
-            Kranitel Messages
-            Messages are formatted with kyori's adventure api
-            https://docs.advntr.dev/minimessage/index.html
-            """;
+    @EventHandler(priority = EventPriority.LOWEST)
+    public void onEvent(ServerLoadEvent event) {
+        if(!event.getType().equals(ServerLoadEvent.LoadType.RELOAD)) {
+            plugin.applyRules();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 /*
  *
- *  CommandRule.java
+ *  Messages.java
  *  This file is part of Kranitel by IlGrandeAnonimo
  *  Copyright (C) 2024 IlGrandeAnonimo <ilgrandeanonimo@icloud.com>
  *
@@ -18,6 +18,20 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione.configuration.records;
+package it.ilgrandeanonimo.kranitel.configuration;
 
-public record CommandRule(String namespace, String permission) {}
+import de.exlll.configlib.Configuration;
+import lombok.Getter;
+
+@Getter
+@Configuration
+@SuppressWarnings("FieldMayBeFinal")
+public final class Messages {
+    private String reloaded = "<green>Rules, Configuration and messages reloaded!</green>";
+
+    public static final String HEADER = """
+            Kranitel Messages
+            Messages are formatted with kyori's adventure api
+            https://docs.advntr.dev/minimessage/index.html
+            """;
+}

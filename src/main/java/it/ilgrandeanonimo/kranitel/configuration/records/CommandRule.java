@@ -1,6 +1,6 @@
 /*
  *
- *  OnServerLoadEvent.java
+ *  CommandRule.java
  *  This file is part of Kranitel by IlGrandeAnonimo
  *  Copyright (C) 2024 IlGrandeAnonimo <ilgrandeanonimo@icloud.com>
  *
@@ -18,22 +18,6 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione;
+package it.ilgrandeanonimo.kranitel.configuration.records;
 
-import lombok.RequiredArgsConstructor;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.Listener;
-import org.bukkit.event.server.ServerLoadEvent;
-
-@RequiredArgsConstructor
-public final class ServerLoadListener implements Listener {
-    private final Kranitel plugin;
-
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onEvent(ServerLoadEvent event) {
-        if(!event.getType().equals(ServerLoadEvent.LoadType.RELOAD)) {
-            plugin.applyRules();
-        }
-    }
-}
+public record CommandRule(String namespace, String permission) {}

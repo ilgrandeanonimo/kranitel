@@ -18,12 +18,12 @@
  *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package it.pboglione.configuration;
+package it.ilgrandeanonimo.kranitel.configuration;
 
 import de.exlll.configlib.Comment;
 import de.exlll.configlib.Configuration;
-import it.pboglione.configuration.records.CommandRule;
-import it.pboglione.configuration.records.PermissionRule;
+import it.ilgrandeanonimo.kranitel.configuration.records.CommandRule;
+import it.ilgrandeanonimo.kranitel.configuration.records.PermissionRule;
 import lombok.Getter;
 import org.bukkit.permissions.PermissionDefault;
 
