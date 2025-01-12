@@ -1,0 +1,74 @@
+plugins {
+    id 'io.freefair.lombok' version '8.10'
+    id 'io.github.goooler.shadow' version '8.1.7'
+    id 'xyz.jpenilla.run-paper' version '2.3.1'
+    id 'java'
+}
+
+group = 'it.pboglione'
+version = '1.0.0-beta1'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "papermc-repo"
+        url = "https://repo.papermc.io/repository/maven-public/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+    maven { 
+        name = "gradle-plugins"
+        url = "https://plugins.gradle.org/m2/" 
+    }
+    maven { 
+        name = "william278"
+        url = "https://repo.william278.net/releases" 
+    }
+}
+
+dependencies {
+    compileOnly("io.papermc.paper:paper-api:1.21.1-R0.1-SNAPSHOT")
+    implementation("net.william278.uniform:uniform-paper:1.2.2")
+    implementation("de.exlll:configlib-yaml:4.5.0")
+}
+
+def targetJavaVersion = 21
+java {
+    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+    if (JavaVersion.current() < javaVersion) {
+        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+
+    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
+        options.release.set(targetJavaVersion)
+    }
+}
+
+processResources {
+    def props = [version: version]
+    inputs.properties props
+    filteringCharset 'UTF-8'
+    filesMatching('paper-plugin.yml') {
+        expand props
+    }
+}
+
+shadowJar {
+    archiveFileName = "Kranitel_${version}.jar"
+    relocate("de.exlll.configlib", "it.ilgrandeanonimo.kranitel.lib.configlib")
+    relocate("net.william278.uniform", "it.ilgrandeanonimo.kranitel.lib.uniform")
+    relocate("org.snakeyml", "it.ilgrandeanonimo.kranitel.lib.snakeyml")
+    minimize()
+}
+
+runServer {
+    minecraftVersion("1.21.1")
+}
