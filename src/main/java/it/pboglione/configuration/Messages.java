@@ -31,24 +31,9 @@ import java.util.Set;
 
 @Getter
 @Configuration
+@SuppressWarnings("FieldMayBeFinal")
 public final class Messages {
-    private HashMap<String, String> messages;
-
-    public Component getMessage(String key, TagResolver... resolvers) {
-        return MiniMessage.miniMessage()
-                .deserialize(messages.getOrDefault(key, "Message not found"), resolvers);
-    }
-
-    public Set<String> getMessagesList() {
-        return messages.keySet();
-    }
-
-    public void mergeMessages(Messages messages) {
-        final Messages tmpMessages = messages;
-        this.messages.forEach((key, message) ->
-            tmpMessages.getMessages().put(key, message));
-        this.messages = tmpMessages.getMessages();
-    }
+    private String reloaded = "<green>Configuration and messages reloaded!</green>";
 
     public static final String HEADER = """
             Kranitel Messages

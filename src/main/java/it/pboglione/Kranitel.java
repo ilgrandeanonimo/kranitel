@@ -50,7 +50,6 @@ public final class Kranitel extends JavaPlugin {
         instance = this;
         loadConfiguration();
         loadMessages();
-        verifyMessages();
         registerCommands();
         getServer().getPluginManager().registerEvents(
                 new ServerLoadListener(this), this);
@@ -79,20 +78,6 @@ public final class Kranitel extends JavaPlugin {
 
     public void loadMessages() {
         final File messagesFile = new File(getDataFolder(), "messages.yml");
-        try(InputStream stream = getResource("messages.yml")) {
-            if(!messagesFile.exists()) {
-                assert stream != null;
-                this.messages = YamlConfigurations.read(
-                        stream,
-                        Messages.class
-                );
-                stream.close();
-                saveMessages();
-                return;
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException("Error", e);
-        }
         this.messages = YamlConfigurations.update(
                 messagesFile.toPath(),
                 Messages.class,
@@ -101,29 +86,6 @@ public final class Kranitel extends JavaPlugin {
                         .charset(StandardCharsets.UTF_8)
                         .build()
         );
-    }
-
-    public void verifyMessages() {
-        try(InputStream stream = getResource("messages.yml")) {
-            assert stream != null;
-            final Messages defaultMessages = YamlConfigurations.read(
-                    stream,
-                    Messages.class
-            );
-            stream.close();
-            boolean isValid = this.messages.getMessagesList()
-                    .containsAll(defaultMessages.getMessagesList());
-            if(!isValid) {
-                this.messages.mergeMessages(defaultMessages);
-                saveMessages();
-                getLogger().warning("""
-                    Invalid messages.yml! The default messages has been merged with
-                    yours. Check if everything is correct.
-                    """);
-            }
-        } catch (IOException e) {
-            throw new IllegalStateException("Error", e);
-        }
     }
 
     public void saveMessages() {
